@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="순천향대학교 회계학과 이서현 포트폴리오">
+<title>이서현 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;900&display=swap">
+<style>
+  :root {
+    --paper: #F5F7F4;
+    --surface: #FFFFFF;
+    --ink: #17201C;
+    --muted: #5A6862;
+    --rule: #D5DDD8;
+    --rule-strong: #17201C;
+    --green: #1E5A47;
+    --green-soft: #E3EEE8;
+    --on-green: #FFFFFF;
+    --gold: #9A6B12;
+    --gold-soft: #F6EBD3;
+    --serif: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+    --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #0E1513;
+      --surface: #151F1B;
+      --ink: #E3EAE6;
+      --muted: #97A69F;
+      --rule: #2A3833;
+      --rule-strong: #C9D4CE;
+      --green: #74C3A2;
+      --green-soft: #1A2E27;
+      --on-green: #0E1513;
+      --gold: #E0B866;
+      --gold-soft: #2B2516;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0E1513;
+    --surface: #151F1B;
+    --ink: #E3EAE6;
+    --muted: #97A69F;
+    --rule: #2A3833;
+    --rule-strong: #C9D4CE;
+    --green: #74C3A2;
+    --green-soft: #1A2E27;
+    --on-green: #0E1513;
+    --gold: #E0B866;
+    --gold-soft: #2B2516;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    padding-inline: 20px;
+    word-break: keep-all;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-block: 48px 80px; }
+  h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  a { color: var(--green); }
+  a:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .chip {
+    font-size: 13px; padding: 3px 11px; border-radius: 999px;
+    border: 1px solid var(--rule); color: var(--muted); background: var(--surface);
+    white-space: nowrap;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ---------- top bar ---------- */
+  .top {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px;
+    border-bottom: 1px solid var(--rule); padding-bottom: 16px;
+  }
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: var(--paper); padding-top: 14px;
+  }
+  .menu { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; list-style: none; }
+  .menu > li { position: relative; }
+  .menu-btn, .menu > li > a {
+    display: inline-flex; align-items: center; gap: 6px;
+    font: inherit; font-size: 14px; color: var(--muted); text-decoration: none;
+    background: none; border: 0; padding: 6px 10px; border-radius: 4px; cursor: pointer;
+  }
+  .menu-btn:hover, .menu > li > a:hover, .menu-btn[aria-expanded="true"] { color: var(--ink); background: var(--green-soft); }
+  .menu-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+  .caret { width: 8px; height: 8px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] .caret { transform: translateY(2px) rotate(-135deg); }
+  .dropdown {
+    position: absolute; right: 0; top: calc(100% + 6px); min-width: 210px;
+    background: var(--surface); border: 1px solid var(--rule);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); padding: 6px; margin: 0; list-style: none;
+  }
+  .dropdown a {
+    display: block; padding: 8px 12px; font-size: 14px; color: var(--ink); text-decoration: none; border-radius: 3px;
+  }
+  .dropdown a:hover, .dropdown a:focus-visible { background: var(--green-soft); color: var(--green); outline: none; }
+  .dropdown .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px;
+    padding-block: 60px 64px; align-items: start;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 900;
+    font-size: clamp(48px, 8vw, 84px); line-height: 1.05; letter-spacing: -0.02em;
+    margin-top: 14px;
+  }
+  .hero .en { font-family: var(--mono); font-size: 14px; color: var(--muted); margin-top: 10px; }
+  .hero .lead { font-size: 19px; line-height: 1.7; margin-top: 28px; max-width: 30em; }
+  .hero .lead strong { color: var(--green); font-weight: 600; }
+  .index { margin-top: 32px; border-top: 1px solid var(--rule-strong); }
+  .index a {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline;
+    padding: 12px 0; border-bottom: 1px solid var(--rule); color: var(--ink); text-decoration: none;
+  }
+  .index a:hover .idx-title { color: var(--green); }
+  .idx-title { font-weight: 600; }
+  .idx-meta { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  /* 재무상태표 */
+  .ledger { background: var(--surface); border: 1px solid var(--rule); padding: 24px 24px 20px; }
+  .ledger-head { text-align: center; }
+  .ledger-head h2 { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: 0.3em; }
+  .ledger-head .label { margin-top: 2px; text-transform: none; letter-spacing: 0.02em; }
+  .t {
+    display: grid; grid-template-columns: 1fr 1fr; margin-top: 18px;
+    border-top: 2px solid var(--rule-strong);
+  }
+  .t > div { padding-top: 10px; }
+  .t > div:first-child { border-right: 1px solid var(--rule-strong); padding-right: 14px; }
+  .t > div:last-child { padding-left: 14px; }
+  .t h3 { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+  .t ul { font-size: 14px; }
+  .t li { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px dotted var(--rule); }
+  .t li span:last-child { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .t .sub { margin-top: 14px; }
+  .t-total {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule-strong); border-bottom: 3px double var(--rule-strong);
+    font-size: 13px; font-weight: 600;
+  }
+  .t-total span { padding: 8px 0; }
+  .t-total span:first-child { border-right: 1px solid var(--rule-strong); padding-right: 14px; }
+  .t-total span:last-child { padding-left: 14px; }
+  .ledger-note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+  /* ---------- section heads ---------- */
+  .sec-head { border-top: 2px solid var(--rule-strong); padding-top: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .sec-head h2 { font-family: var(--serif); font-size: 30px; font-weight: 600; }
+  .sec-head p { font-size: 14px; color: var(--muted); }
+  section.sec { padding-block: 40px 24px; }
+
+  /* ---------- case study ---------- */
+  .case { padding-block: 40px 48px; border-bottom: 1px solid var(--rule); }
+  .case:last-child { border-bottom: 0; }
+  .case-head { display: grid; grid-template-columns: 220px 1fr; gap: 40px; }
+  .case-meta { display: grid; gap: 14px; align-content: start; }
+  .case-meta dl { margin: 0; display: grid; gap: 10px; }
+  .case-meta dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .case-meta dd { margin: 0; font-size: 14px; }
+  .badge {
+    display: inline-block; justify-self: start; font-size: 13px; font-weight: 600; color: var(--gold);
+    background: var(--gold-soft); padding: 3px 12px; border-radius: 4px;
+  }
+  .case h3 { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 32px); font-weight: 900; line-height: 1.3; }
+  .case .en-title { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .case .summary { font-size: 17px; margin-top: 18px; max-width: 38em; }
+
+  .case-body { margin-top: 36px; display: grid; gap: 36px; padding-left: 260px; }
+  .part h4 { font-size: 13px; font-weight: 600; color: var(--green); margin-bottom: 10px; letter-spacing: 0.02em; }
+  .part > p { max-width: 40em; }
+  .bullets { display: grid; gap: 8px; max-width: 42em; }
+  .bullets li { padding-left: 18px; position: relative; }
+  .bullets li::before { content: ""; position: absolute; left: 0; top: 0.85em; width: 8px; height: 1px; background: var(--ink); }
+
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); background: var(--surface); }
+  .three > div { padding: 18px 20px; }
+  .three > div + div { border-left: 1px solid var(--rule); }
+  .three strong { display: block; font-size: 15px; margin-bottom: 6px; }
+  .three p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* process flow (실제 9단계 순서) */
+  .flow { border: 1px solid var(--rule); background: var(--surface); }
+  .flow li {
+    display: grid; grid-template-columns: 36px 120px 1fr; gap: 12px; align-items: baseline;
+    padding: 9px 16px; border-bottom: 1px solid var(--rule); font-size: 14px;
+  }
+  .flow li:last-child { border-bottom: 0; }
+  .flow .n { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .flow .who { font-size: 12px; color: var(--muted); }
+  .flow li.me { background: var(--green-soft); }
+  .flow li.me .who { color: var(--green); font-weight: 600; }
+  .flow-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); background: var(--surface); }
+  .split > div { padding: 18px 20px; }
+  .split > div + div { border-left: 1px solid var(--rule); }
+  .split > div.mine { background: var(--green-soft); }
+  .split strong { display: block; font-size: 15px; margin-bottom: 8px; }
+  .split .mine strong { color: var(--green); }
+  .split li { font-size: 14px; padding: 3px 0; }
+
+  .takeaway {
+    border-left: 3px solid var(--green); padding: 4px 0 4px 18px; max-width: 40em;
+    font-family: var(--serif); font-size: 18px; line-height: 1.7;
+  }
+
+  /* ---------- about ---------- */
+  .about { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px; margin-top: 32px; }
+  .about h3 { font-size: 18px; font-weight: 600; }
+  .about .where { font-size: 13px; color: var(--muted); font-family: var(--mono); margin-top: 2px; }
+  .about p.body { margin-top: 10px; }
+
+  /* ---------- skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
+  .skill { border: 1px solid var(--rule); background: var(--surface); padding: 20px 22px; display: grid; gap: 12px; align-content: start; }
+  .skill h3 { font-size: 17px; font-weight: 600; }
+  .skill .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding: 6px 0; border-bottom: 1px dotted var(--rule); }
+  .skill .row span:last-child { font-family: var(--mono); font-size: 12px; color: var(--green); white-space: nowrap; }
+
+  /* ---------- contact ---------- */
+  .contact { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 520px); gap: 40px; align-items: end; }
+  .contact .big { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 34px); font-weight: 600; line-height: 1.4; }
+  .contact dl { margin: 0; display: grid; gap: 10px; }
+  .contact dl div { display: grid; grid-template-columns: 70px 1fr; gap: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 8px; font-size: 15px; }
+  .contact dt { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 3px; }
+  .contact dd { margin: 0; }
+  .placeholder { color: var(--muted); font-style: italic; }
+
+  footer { margin-top: 56px; border-top: 1px solid var(--rule); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 40px 48px; }
+    .case-head { grid-template-columns: 1fr; gap: 20px; }
+    .case-meta { grid-template-columns: auto 1fr; gap: 12px 24px; }
+    .case-meta dl { grid-template-columns: repeat(3, auto); gap: 6px 24px; }
+    .case-body { padding-left: 0; }
+    .skills { grid-template-columns: 1fr 1fr; }
+    .contact { grid-template-columns: 1fr; gap: 24px; }
+  }
+  @media (max-width: 620px) {
+    body { padding-inline: 16px; }
+    .wrap { padding-block: 28px 56px; }
+    .case-meta, .case-meta dl { grid-template-columns: 1fr; }
+    .three, .split { grid-template-columns: 1fr; }
+    .three > div + div, .split > div + div { border-left: 0; border-top: 1px solid var(--rule); }
+    .flow li { grid-template-columns: 28px 1fr; }
+    .flow .who { grid-column: 2; grid-row: 1; }
+    .flow .what { grid-column: 2; }
+    .about, .skills { grid-template-columns: 1fr; }
+    .ledger { padding-inline: 16px; }
+    .t > div:first-child, .t-total span:first-child { padding-right: 10px; }
+    .t > div:last-child, .t-total span:last-child { padding-left: 10px; }
+  }
+  [hidden] { display: none !important; }
+  .brand { text-decoration: none; }
+  .brand:hover { color: var(--ink); }
+  .about { grid-template-columns: 1fr !important; }
+  .view-in { animation: viewIn 0.25s ease-out; }
+  @keyframes viewIn { from { opacity: 0.4; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .view-in { animation: none; } }
+  @media (max-width: 620px) {
+    .menu { position: relative; }
+    .menu > li { position: static; }
+    .dropdown { left: 0; right: 0; min-width: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="label brand" href="#home">이서현 · Portfolio</a>
+    <nav aria-label="섹션 이동">
+      <ul class="menu">
+        <li><a href="#home">홈</a></li>
+        <li>
+          <button class="menu-btn" id="menu-work" aria-expanded="false" aria-controls="dd-work">프로젝트 <span class="caret" aria-hidden="true"></span></button>
+          <ul class="dropdown" id="dd-work" hidden>
+            <li><a href="#medigauge">메디게이지<span class="sub">창업경진대회 대상</span></a></li>
+            <li><a href="#australia">호주 accounting 사무소 인턴<span class="sub">2개월</span></a></li>
+            <li><a href="#gosiban">고시반 반장<span class="sub">3학년</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <button class="menu-btn" id="menu-about" aria-expanded="false" aria-controls="dd-about">활동 <span class="caret" aria-hidden="true"></span></button>
+          <ul class="dropdown" id="dd-about" hidden>
+            <li><a href="#stay">호주 거주<span class="sub">2026.06 – 08</span></a></li>
+            <li><a href="#scas">회계 동아리 스카스<span class="sub">1학년 – 3학년</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#skills">자격증</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <header class="hero" id="home" data-view>
+    <div>
+      <p class="label">순천향대학교 회계학과 3학년 · 23세</p>
+      <h1>이서현</h1>
+      <p class="lead">
+        병원 재무진단 플랫폼 메디게이지로 <strong>창업경진대회 대상</strong>을 받았고,
+        호주 accounting 사무소에서 업체들의 <strong>세금을 줄이기 위한 컨설팅 아이디어</strong>를 제시했습니다.
+      </p>
+      <nav class="index" aria-label="프로젝트 목록">
+        <a href="#medigauge"><span class="idx-title">메디게이지 · AI 병원 재무진단</span><span class="idx-meta">대상 · 2026</span></a>
+        <a href="#australia"><span class="idx-title">호주 accounting 사무소 인턴</span><span class="idx-meta">2개월</span></a>
+        <a href="#gosiban"><span class="idx-title">고시반 반장</span><span class="idx-meta">3학년</span></a>
+      </nav>
+    </div>
+
+    <aside class="ledger" aria-label="재무상태표 형식으로 정리한 이력 요약">
+      <div class="ledger-head">
+        <h2>재무상태표</h2>
+        <p class="label">2026년 10월 현재 · 이서현</p>
+      </div>
+      <div class="t">
+        <div>
+          <h3>자산</h3>
+          <ul>
+            <li><span>창업경진대회 대상</span><span>2026</span></li>
+            <li><span>해외 인턴</span><span>2개월</span></li>
+            <li><span>호주 거주</span><span>3개월</span></li>
+            <li><span>재경관리사</span><span>보유</span></li>
+            <li><span>OPIc</span><span>IH</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>자본</h3>
+          <ul>
+            <li><span>회계 동아리 스카스</span><span>1–3학년</span></li>
+            <li><span>고시반 반장</span><span>3학년</span></li>
+            <li><span>매일 아침 첫 불</span><span>고시반</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-total"><span>자산 총계</span><span>자본 총계</span></div>
+    </aside>
+  </header>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="sec" id="work" hidden>
+    <div class="sec-head">
+      <h2>프로젝트</h2>
+    </div>
+
+    <!-- MediGauge -->
+    <article class="case" id="medigauge" data-view hidden>
+      <div class="case-head">
+        <div class="case-meta">
+          <span class="badge">대상 수상</span>
+          <dl>
+            <div><dt>대회</dt><dd>대학생 창업경진대회 (2026)</dd></div>
+            <div><dt>팀</dt><dd>C&amp;C (Code &amp; Cost) · 3인</dd></div>
+            <div><dt>구성</dt><dd>컴퓨터소프트웨어공학과 1명, 회계학과 2명</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3>메디게이지: 생성형 AI 기반 병원 재무진단 &amp; 상급종합병원 전환 컨설팅 플랫폼</h3>
+          <p class="en-title">MediGauge — AI-Powered Hospital Financial Diagnosis &amp; Tertiary-Hospital Transition Consulting Platform</p>
+          <p class="summary">
+            HASPA 공시 재무제표와 회계 전공자가 설계·검증한 프롬프트를 생성형 AI에 연결해,
+            병원의 재무비율을 상급종합병원 평균·중앙값과 비교하고 진단 리포트를 제공하는 플랫폼입니다.
+            회계학과 팀원으로 참여했습니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div class="part">
+          <h4>배경</h4>
+          <div class="three">
+            <div><strong>판단 기준이 없다</strong><p>상급종합병원 등의 지정기준 충족 수준을 스스로 진단하고 다른 병원과 비교·분석할 시스템이 없습니다.</p></div>
+            <div><strong>데이터가 흩어져 있다</strong><p>HASPA 공시 재무제표가 병원별·연도별로 흩어져 있어, 수백 병원 × 수백 계정 × 다년간 데이터를 수작업으로 비교하기엔 양이 방대합니다.</p></div>
+            <div><strong>계정이 특수하다</strong><p>의료회계는 의료발전준비금, 고유목적사업준비금 등 고도의 전문지식이 필요합니다.</p></div>
+          </div>
+        </div>
+
+        <div class="part">
+          <h4>AI와 회계 전공자의 역할 분담</h4>
+          <div class="split">
+            <div>
+              <strong>생성형 AI (ChatGPT · Claude)</strong>
+              <ul>
+                <li>데이터 수집 코드</li>
+                <li>비율 계산</li>
+                <li>벤치마크 집계</li>
+                <li>진단·개선안 초안</li>
+              </ul>
+            </div>
+            <div class="mine">
+              <strong>회계 전공자</strong>
+              <ul>
+                <li>계정 기준 설계</li>
+                <li>벤치마크 검산</li>
+                <li>결과 검증</li>
+                <li>실행 가능성 보정</li>
+              </ul>
+            </div>
+          </div>
+          <p class="flow-note">계산·코드 작성은 AI가 전담하고, 회계 전공자는 "AI가 무엇을 어떻게 계산할지"를 정의·검증해 별도 개발 인력 없이 구현했습니다.</p>
+        </div>
+
+        <div class="part">
+          <h4>진단 시나리오</h4>
+          <ol class="flow">
+            <li><span class="n">1</span><span class="who">병원 담당자</span><span class="what">병원 선택, 진단 요청</span></li>
+            <li><span class="n">2</span><span class="who">플랫폼</span><span class="what">HASPA 사이트에 데이터 요청</span></li>
+            <li><span class="n">3</span><span class="who">HASPA</span><span class="what">데이터 수집</span></li>
+            <li><span class="n">4</span><span class="who">플랫폼</span><span class="what">수집한 데이터를 생성형 AI에 전송</span></li>
+            <li><span class="n">5</span><span class="who">생성형 AI</span><span class="what">비율 계산, 진단 초안</span></li>
+            <li><span class="n">6</span><span class="who">생성형 AI</span><span class="what">진단 내용을 회계 전공자에게 전송</span></li>
+            <li class="me"><span class="n">7</span><span class="who">회계 전공자</span><span class="what">결과 검증, 계정 타당성 판단</span></li>
+            <li class="me"><span class="n">8</span><span class="who">회계 전공자</span><span class="what">검증한 데이터를 플랫폼에 전송</span></li>
+            <li><span class="n">9</span><span class="who">병원 담당자</span><span class="what">진단 리포트 확인</span></li>
+          </ol>
+          <p class="flow-note">초록색 단계가 회계 전공자가 맡는 구간입니다.</p>
+        </div>
+
+        <div class="part">
+          <h4>AI를 활용한 재무 진단</h4>
+          <ul class="bullets">
+            <li>표준 재무비율뿐 아니라 <strong>의료분쟁비용·진료비 삭감</strong> 등 병원 특유의 "숨은 손실" 계정까지 분석 대상에 포함합니다.</li>
+            <li>회계 전공자가 이들 계정의 처리 기준을 설계·검증해, 생성형 AI가 놓치는 항목까지 진단에 반영합니다.</li>
+            <li>동종 병원 평균과 비교해 분쟁·삭감 부담이 큰 병원을 식별하고, 상급종합병원 전환·재무 건전성 진단에 활용합니다.</li>
+          </ul>
+        </div>
+
+        <div class="part">
+          <h4>차별화 전략</h4>
+          <ul class="bullets">
+            <li><strong>저비용 구독형:</strong> HASPA 공시 자료가 갱신될 때마다 별도 비용 없이 즉시 재진단</li>
+            <li><strong>자연어 진단:</strong> "왜 부족한지(회계적 원인)"와 "어떻게 개선할지(단기·중기 과제)"를 리포트로 제공</li>
+            <li><strong>전공자 검증:</strong> 회계 전공자가 고유목적사업준비금 등 병원 특유 계정 기준을 설계하고 AI 산출 결과를 검산·검증</li>
+            <li><strong>이정표 역할:</strong> 상급종합병원 평균·중앙값을 기준선으로 제시</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Australia internship -->
+    <article class="case" id="australia" data-view hidden>
+      <div class="case-head">
+        <div class="case-meta">
+          <span class="badge" style="color:var(--green);background:var(--green-soft)">해외 인턴</span>
+          <dl>
+            <div><dt>기간</dt><dd>2개월</dd></div>
+            <div><dt>장소</dt><dd>호주 · accounting 사무소</dd></div>
+            <div><dt>역할</dt><dd>인턴</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3>호주 accounting 사무소 인턴</h3>
+          <p class="summary">
+            컨설팅을 받으러 온 업체들과 미팅하며, 업체들의 세금을 줄이기 위한 컨설팅 아이디어를 제시했습니다.
+          </p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="part">
+          <h4>배경</h4>
+          <ul class="bullets">
+            <li>호주 세법이 개정되면서 거래처가 절세 자문을 요청했고, 이 프로젝트를 맡았습니다.</li>
+            <li>호주 사무소였기 때문에 손님은 모두 외국인이었고, 모든 업무를 영어로 진행했습니다.</li>
+          </ul>
+        </div>
+        <div class="part">
+          <h4>접근</h4>
+          <ul class="bullets">
+            <li>절세 방안 중 <strong>인건비</strong>에 초점을 맞췄습니다.</li>
+            <li>호주는 pension 적립이 의무이고 기준이 높아, 인건비 중 tax를 떼는 근무시간과 cash로 지급하는 시간의 비중을 조정하는 것을 핵심으로 봤습니다.</li>
+          </ul>
+        </div>
+        <div class="part">
+          <h4>결과</h4>
+          <ul class="bullets">
+            <li>직원 1명당 24시간까지는 tax를 떼는 근무시간으로 호주 정부에 신고하고, 그 이상은 cash로 지급하는 방법을 가장 좋은 절세 방법으로 컨설팅했습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- 고시반 -->
+    <article class="case" id="gosiban" data-view hidden>
+      <div class="case-head">
+        <div class="case-meta">
+          <span class="badge" style="color:var(--green);background:var(--green-soft)">리더십</span>
+          <dl>
+            <div><dt>기간</dt><dd>3학년</dd></div>
+            <div><dt>역할</dt><dd>고시반 반장</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3>고시반 반장</h3>
+          <ul class="bullets summary">
+            <li>학습환경 조성</li>
+            <li>민원을 받는 소통창구 역할</li>
+            <li>모범을 보이기 위해 매일 아침 가장 먼저 고시반 불을 켜고 공부</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="sec" id="about" hidden>
+    <div class="sec-head">
+      <h2>활동</h2>
+    </div>
+    <div class="about">
+      <div id="stay" data-view hidden>
+        <h3>호주 거주</h3>
+        <p class="where">2026.06 – 08 · 3개월</p>
+        <p class="body">다양한 국적을 가진 친구들과 어울리고 여행도 다니며, 언어장벽을 허물고 교류했습니다.</p>
+      </div>
+      <div id="scas" data-view hidden>
+        <h3>회계 동아리 스카스</h3>
+        <p class="where">1학년 – 3학년</p>
+        <p class="body">1학년부터 3학년까지 회계 동아리 스카스에 소속되어 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CERTS ================= -->
+  <section class="sec" id="skills" data-view hidden>
+    <div class="sec-head">
+      <h2>자격증 · 수강 과목</h2>
+    </div>
+    <div class="skills">
+      <div class="skill">
+        <h3>자격증</h3>
+        <div>
+          <div class="row"><span>재경관리사</span><span>보유</span></div>
+          <div class="row"><span>OPIc 영어</span><span>IH</span></div>
+        </div>
+      </div>
+      <div class="skill">
+        <h3>전공 수강 과목</h3>
+        <div>
+          <div class="row"><span>재무회계 · 원가회계 · 관리회계</span><span>수강</span></div>
+          <div class="row"><span>회계학연습 · 재무관리 · 옵션(파생상품)</span><span>수강</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="sec" id="contact" data-view hidden>
+    <div class="sec-head">
+      <h2>연락처</h2>
+    </div>
+    <div class="contact">
+      <dl>
+        <div><dt>이메일</dt><dd class="placeholder">이메일 주소를 적어 주세요</dd></div>
+        <div><dt>학교</dt><dd>순천향대학교 회계학과</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 이서현</span>
+    <span>순천향대학교 회계학과</span>
+  </footer>
+</div>
+<script>
+  (function () {
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.menu-btn'));
+    function close(btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = true;
+    }
+    function open(btn) {
+      buttons.forEach(function (b) { if (b !== btn) close(b); });
+      btn.setAttribute('aria-expanded', 'true');
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = false;
+    }
+    var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (canHover && e.detail > 0) { open(btn); return; }
+        btn.getAttribute('aria-expanded') === 'true' ? close(btn) : open(btn);
+      });
+      if (canHover) {
+        var item = btn.parentElement;
+        item.addEventListener('mouseenter', function () { open(btn); });
+        item.addEventListener('mouseleave', function () { close(btn); });
+      }
+    });
+    document.querySelectorAll('.dropdown a').forEach(function (a) {
+      a.addEventListener('click', function () { buttons.forEach(close); });
+    });
+
+    var views = Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+    var groups = Array.prototype.slice.call(document.querySelectorAll('#work, #about'));
+    function show() {
+      var id = decodeURIComponent(location.hash.slice(1)) || 'home';
+      var target = document.getElementById(id);
+      if (!target || !target.hasAttribute('data-view')) target = document.getElementById('home');
+      views.forEach(function (v) { v.hidden = v !== target; v.classList.remove('view-in'); });
+      groups.forEach(function (g) { g.hidden = !g.contains(target); });
+      void target.offsetWidth;
+      target.classList.add('view-in');
+      document.querySelectorAll('.menu a, .menu-btn').forEach(function (el) { el.removeAttribute('aria-current'); });
+      window.scrollTo(0, 0);
+    }
+    window.addEventListener('hashchange', show);
+    show();
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.menu')) buttons.forEach(close);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var openBtn = buttons.filter(function (b) { return b.getAttribute('aria-expanded') === 'true'; })[0];
+      if (openBtn) { close(openBtn); openBtn.focus(); }
+    });
+  })();
+</script>
+</body>
+</html>
